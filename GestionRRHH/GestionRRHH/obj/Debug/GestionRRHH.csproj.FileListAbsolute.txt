@@ -69,7 +69,6 @@ C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRR
 C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRRHH\GestionRRHH\bin\Newtonsoft.Json.xml
 C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRRHH\GestionRRHH\bin\Antlr3.Runtime.pdb
 C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRRHH\GestionRRHH\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRRHH\GestionRRHH\obj\Debug\GestionRRHH.csprojAssemblyReference.cache
 C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRRHH\GestionRRHH\obj\Debug\GestionRRHH.csproj.CoreCompileInputs.cache
 C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRRHH\GestionRRHH\obj\Debug\GestionRRHH.csproj.CopyComplete
 C:\Users\lapc18\Documents\Visual Studio 2017\DevLegnd\RRHH\gestionrrhh\GestionRRHH\GestionRRHH\obj\Debug\GestionRRHH.dll
