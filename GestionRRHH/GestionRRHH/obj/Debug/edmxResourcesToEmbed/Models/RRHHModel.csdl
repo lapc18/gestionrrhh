@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionRRHHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cargos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Empleados" Relationship="Self.fk_codcargo_empleado" FromRole="Cargos" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Empleados" Relationship="Self.fk_Departamento_empleado" FromRole="Departamentos" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Departamento" Type="Int32" />
+    <Property Name="CodCargo" Type="Int32" />
+    <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+    <Property Name="Salario" Type="Int32" />
+    <Property Name="Estatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cargo" Relationship="Self.fk_codcargo_empleado" FromRole="Empleados" ToRole="Cargos" />
+    <NavigationProperty Name="Departamento1" Relationship="Self.fk_Departamento_empleado" FromRole="Empleados" ToRole="Departamentos" />
+    <NavigationProperty Name="Permisos" Relationship="Self.fk_codpermisos_empleado" FromRole="Empleados" ToRole="Permisos" />
+    <NavigationProperty Name="Salidas" Relationship="Self.fk_codsalida_empleado" FromRole="Empleados" ToRole="Salidas" />
+    <NavigationProperty Name="Vacaciones" Relationship="Self.fk_codvacaciones_empleado" FromRole="Empleados" ToRole="Vacaciones" />
+    <NavigationProperty Name="Licencias" Relationship="Self.fk_idempleado_licencias" FromRole="Empleados" ToRole="Licencias" />
+  </EntityType>
+  <EntityType Name="Licencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Comentarios" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Empleado" Relationship="Self.fk_idempleado_licencias" FromRole="Licencias" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="Nomina">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_Year" Type="Int32" Nullable="false" />
+    <Property Name="Mes" Type="Int32" Nullable="false" />
+    <Property Name="MontoTotal" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodEmpleado" Type="Int32" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Comentarios" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Empleado" Relationship="Self.fk_codpermisos_empleado" FromRole="Permisos" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="Salida">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="TipoSalida" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Motivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FechaSalida" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Empleado" Relationship="Self.fk_codsalida_empleado" FromRole="Salidas" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Vacacione">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodEmpleado" Type="Int32" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Correspondiente" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Empleado" Relationship="Self.fk_codvacaciones_empleado" FromRole="Vacaciones" ToRole="Empleados" />
+  </EntityType>
+  <Association Name="fk_codcargo_empleado">
+    <End Role="Cargos" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Empleados" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleados">
+        <PropertyRef Name="CodCargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Departamento_empleado">
+    <End Role="Departamentos" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Empleados" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamentos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Empleados">
+        <PropertyRef Name="Departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_codpermisos_empleado">
+    <End Role="Empleados" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Permisos" Type="Self.Permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permisos">
+        <PropertyRef Name="CodEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_codsalida_empleado">
+    <End Role="Empleados" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Salidas" Type="Self.Salida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Salidas">
+        <PropertyRef Name="CodEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_codvacaciones_empleado">
+    <End Role="Empleados" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Vacaciones" Type="Self.Vacacione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vacaciones">
+        <PropertyRef Name="CodEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idempleado_licencias">
+    <End Role="Empleados" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Licencias" Type="Self.Licencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Licencias">
+        <PropertyRef Name="IdEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionRRHHEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cargos" EntityType="Self.Cargo" />
+    <EntitySet Name="Departamentos" EntityType="Self.Departamento" />
+    <EntitySet Name="Empleados" EntityType="Self.Empleado" />
+    <EntitySet Name="Licencias" EntityType="Self.Licencia" />
+    <EntitySet Name="Nominas" EntityType="Self.Nomina" />
+    <EntitySet Name="Permisos" EntityType="Self.Permiso" />
+    <EntitySet Name="Salidas" EntityType="Self.Salida" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Vacaciones" EntityType="Self.Vacacione" />
+    <AssociationSet Name="fk_codcargo_empleado" Association="Self.fk_codcargo_empleado">
+      <End Role="Cargos" EntitySet="Cargos" />
+      <End Role="Empleados" EntitySet="Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Departamento_empleado" Association="Self.fk_Departamento_empleado">
+      <End Role="Departamentos" EntitySet="Departamentos" />
+      <End Role="Empleados" EntitySet="Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="fk_codpermisos_empleado" Association="Self.fk_codpermisos_empleado">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Permisos" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_codsalida_empleado" Association="Self.fk_codsalida_empleado">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Salidas" EntitySet="Salidas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_codvacaciones_empleado" Association="Self.fk_codvacaciones_empleado">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Vacaciones" EntitySet="Vacaciones" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idempleado_licencias" Association="Self.fk_idempleado_licencias">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Licencias" EntitySet="Licencias" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
