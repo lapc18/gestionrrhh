@@ -21,12 +21,40 @@ namespace GestionRRHH.Controllers
             return View(db.Nominas.ToList());
         }
 
+        public ActionResult Consulta()
+        {
+            return View(db.Nominas.ToList());
+        }
 
         [HttpPost]
-        public ActionResult Calcular()
+        public ActionResult Consulta(string Mes, int year)
         {
+            if (year.ToString() != null)
+            {
+              return View(db.Nominas.Where(x => x.C_Year == year && x.Mes.ToString().Contains(Mes)).ToList());
+            }
+            else
+            {
+                return View(db.Nominas.ToList());
+            }
+            
+        }
+
+        public ActionResult Calculo()
+        {
+            ViewBag.Year = DateTime.Now.Year;
+            ViewBag.Mes = DateTime.Now.Month;
             ViewBag.Monto = db.Empleados.Sum(x => x.Salario);
-            return View(db.Nominas.ToList());
+            var nomina = new Nomina {
+                C_Year = DateTime.Now.Year,
+                Mes = DateTime.Now.Month,
+                MontoTotal = int.Parse(db.Empleados.Sum(x => x.Salario).ToString())
+            };
+
+            db.Nominas.Add(nomina);
+            db.SaveChanges();
+
+            return View(nomina);
         }
 
         // GET: Nominas/Details/5

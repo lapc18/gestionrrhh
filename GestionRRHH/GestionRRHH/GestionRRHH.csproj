@@ -287,6 +287,8 @@
     <Content Include="Views\Nominas\Details.cshtml" />
     <Content Include="Views\Nominas\Edit.cshtml" />
     <Content Include="Views\Nominas\Index.cshtml" />
+    <Content Include="Views\Nominas\Calculo.cshtml" />
+    <Content Include="Views\Nominas\Consulta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

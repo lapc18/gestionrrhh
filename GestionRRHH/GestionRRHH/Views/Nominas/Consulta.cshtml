@@ -1,0 +1,90 @@
+﻿@model IEnumerable<GestionRRHH.Models.Nomina>
+
+@{
+    ViewBag.Title = "Nominas";
+}
+
+<h1>Consulta</h1>
+
+<br />
+
+<p>
+    @Html.ActionLink("Mostrar todos", "Consulta", null, new { @class = "btn btn-primary" })
+</p>
+
+<br />
+
+@using (Html.BeginForm("Consulta", "Nominas", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+
+        <div class="col-sm-2">
+            @Html.Label("Mes")
+            @Html.DropDownList("Mes", new List<SelectListItem> {
+
+                new SelectListItem{ Text = "Enero", Value = "1" },
+                new SelectListItem{ Text = "Febrero", Value = "2" },
+                new SelectListItem{ Text = "Marzo", Value = "3" },
+                new SelectListItem{ Text = "Abril", Value = "4" },
+                new SelectListItem{ Text = "Mayo", Value = "5" },
+                new SelectListItem{ Text = "Junio", Value = "6" },
+                new SelectListItem{ Text = "Julio", Value = "7" },
+                new SelectListItem{ Text = "Agosto", Value = "8" },
+                new SelectListItem{ Text = "Septiembre", Value = "9" },
+                new SelectListItem{ Text = "Octubre", Value = "10" },
+                new SelectListItem{ Text = "Noviembre", Value = "11" },
+                new SelectListItem{ Text = "Diciembre", Value = "12" },
+
+            }, new { @class = "form-control" })
+        </div>
+
+        <div class="col-sm-2">
+            @Html.Label("Año") <br />
+            <input type="number" min="0" required class="form-control" name="year" id="year"/>
+        </div>
+
+        <div class="col-sm-2">
+            <br />
+            <button class="btn btn-default btn-lg" type="submit">buscar</button>
+        </div>
+    </div>
+
+}
+
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Año")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mes)
+        </th>
+        <th>
+            @Html.DisplayName("Monto")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoTotal)
+            </td>
+        </tr>
+    }
+
+</table>
+
+

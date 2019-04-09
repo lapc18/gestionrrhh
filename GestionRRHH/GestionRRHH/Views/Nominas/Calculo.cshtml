@@ -1,17 +1,17 @@
 ﻿@model GestionRRHH.Models.Nomina
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Nomina";
 }
 
-<h2>Details</h2>
+<h2>Nomina 100% procesada</h2>
 
 <div>
-    <h4>Nomina</h4>
+    <h4>Nomina actual</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.C_Year)
+            @Html.DisplayName("Año")
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MontoTotal)
+            @Html.DisplayName("Monto total")
         </dt>
 
         <dd>
@@ -37,6 +37,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
-    @Html.ActionLink("<< Volver a la lista", "Index", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("<< Volver a la lista", "Index", null, new { @class = "btn btn-default" })
 </p>

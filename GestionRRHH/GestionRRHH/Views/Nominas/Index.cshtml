@@ -6,15 +6,14 @@
 
 <div class="jumbotron">
 
-    <h3 aling="center">Nominas</h3>
+    <h1 align="center">Nominas</h1>
     <br />
     <p align="center">Puede procesar la nomina con los datos actuales o con datos externos, usted elije.</p> <br />
 
-    <center>
-        @Html.ActionLink("Procesar", "Details", null, new { @class = "btn btn-success" })
-
-        @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-primary" })
-    </center>
+    <div class="btn-group-justified" role="group">
+        <a href="/Nominas/Calculo" class="btn btn-default">Procesar</a>
+        <a href="/Nominas/Crear" class="btn btn-default">Crear</a>
+    </div>
 
 </div>
 
