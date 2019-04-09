@@ -92,12 +92,12 @@ create table Departamentos(
 
 create table Empleados(
     Id  int identity(1,1),
+	IdCargo int not null,
     Codigo varchar(100) not null,
     Nombre varchar(100) not null,
     Apellido varchar(100),
     Teléfono varchar(20),
     Departamento int,
-    CodCargo int, 
     FechaIngreso datetime,
     Salario int,
     Estatus varchar(10),
@@ -105,7 +105,7 @@ create table Empleados(
     constraint uk_codempleado unique(Codigo),
     --constraint chk_salario check(Salario > 0),
     constraint fk_Departamento_empleado foreign key (Departamento) references Departamentos(Id),
-    constraint fk_codcargo_empleado foreign key (CodCargo) references Cargos(Id)
+    constraint fk_codcargo_empleado foreign key (Id) references Cargos(Id)
 );
 
 
@@ -121,36 +121,36 @@ create table Nominas(
 
 create table Salidas(
     Id int not null identity(1,1),
-    CodEmpleado int not null,
+    IdEmpleado int not null,
     TipoSalida varchar(10) not null,
     Motivo varchar(255) null,
     FechaSalida datetime not null,
     constraint pk_idsalidas primary key(Id),
-    constraint fk_codsalida_empleado foreign key(CodEmpleado) references Empleados(Id) 
+    constraint fk_codsalida_empleado foreign key(IdEmpleado) references Empleados(Id) 
 );
 
 
 create table Vacaciones(
     Id int not null identity(1,1),
-    CodEmpleado int,
+    IdEmpleado int not null,
     FechaInicio datetime not null,
     FechaFin datetime not null,
     Correspondiente datetime not null,
     Comentario varchar(255) null,
     constraint pk_idvacaciones primary key(Id),
-    constraint fk_codvacaciones_empleado foreign key(CodEmpleado) references Empleados(Id),
+    constraint fk_codvacaciones_empleado foreign key(IdEmpleado) references Empleados(Id),
     --constraint chk_fechas check(FechaInicio != FechaFin)
 );
 
 
 create table Permisos(
     Id int not null identity(1,1),
-    CodEmpleado int,
+    IdEmpleado int not null,
     FechaInicio datetime not null,
     FechaFin datetime not null,
     Comentarios varchar(255) null,
     constraint pk_idpermisos primary key(Id),
-    constraint fk_codpermisos_empleado foreign key(CodEmpleado) references Empleados(Id),
+    constraint fk_codpermisos_empleado foreign key(IdEmpleado) references Empleados(Id),
     --constraint chk_fechaPermiso check(FechaInicio != FechaFin)
 );
 
@@ -166,5 +166,5 @@ create table Licencias(
     --constraint chk_fechaPermiso check(FechaInicio != FechaFin)
 );
 
-
+--nixe
 
