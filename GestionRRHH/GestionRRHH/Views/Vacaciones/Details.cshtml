@@ -1,17 +1,17 @@
 ﻿@model GestionRRHH.Models.Vacacione
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>Vacacione</h4>
+    <h4>Vacaciones</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FechaInicio)
+            @Html.DisplayName("Desde")
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaFin)
+            @Html.DisplayName("Hasta")
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Correspondiente)
+            @Html.DisplayName("Correspondientes al año")
         </dt>
 
         <dd>
@@ -38,21 +38,21 @@
             @Html.DisplayNameFor(model => model.Comentario)
         </dt>
 
-        <dd>
+        <dd> 
             @Html.DisplayFor(model => model.Comentario)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Empleado.Codigo)
+            @Html.DisplayName("Empleado")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Empleado.Codigo)
+            @Html.DisplayFor(model => model.Empleado.Codigo + " => " + model.Empleado.Nombre + " " + model.Empleado.Apellido)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+     @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" }) |
     @Html.ActionLink("<< Volver a la lista", "Index", null, new { @class = "btn btn-primary" })
 </p>

@@ -20,7 +20,7 @@
             @Html.DisplayName("Hasta")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Correspondiente)
+            @Html.DisplayName("Correspondientes al año")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comentario)
@@ -52,7 +52,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
                 @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
-                @{  /*@Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })*/ }
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }
