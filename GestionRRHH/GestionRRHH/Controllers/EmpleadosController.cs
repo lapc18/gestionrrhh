@@ -23,6 +23,31 @@ namespace GestionRRHH.Controllers
 
 
         [HttpPost]
+        public ActionResult Inactivo(int Departamento, string consulta)
+        {
+            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            if (consulta != null || !string.IsNullOrEmpty(consulta) || !string.IsNullOrWhiteSpace(""))
+            {
+                return View(empleados.Where(x => x.Estatus == "Inactivo" && x.Nombre.Contains(consulta) && x.Departamento == Departamento).ToList());
+            }
+            else
+            {
+                return View(empleados.ToList());
+            }
+
+        }
+
+        public ActionResult Inactivo()
+        {
+            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            return View(empleados.ToList());
+        }
+
+
+
+        [HttpPost]
         public ActionResult Consulta(int Departamento, string consulta)
         {
             var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);

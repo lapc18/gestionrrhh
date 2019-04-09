@@ -1,0 +1,77 @@
+﻿@model IEnumerable<GestionRRHH.Models.Permiso>
+
+@{
+    ViewBag.Title = "Permisos";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Cargar todo", "Consulta", null, new { @class = "btn btn-primary" })
+</p>
+
+
+
+<br />
+
+@using (Html.BeginForm("Consulta", "Permisos", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+
+        <div class="col-sm-3">
+            @Html.Label("Empleado")
+            <div class="input-group">
+                <input name="consulta" id="consulta" type="text" class="form-control" placeholder="Ej: Juan Perez">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">buscar</button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+}
+
+
+<br />
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Desde")
+        </th>
+        <th>
+            @Html.DisplayName("Hasta")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </th>
+        <th>
+            @Html.DisplayName("Empleado")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentarios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empleado.Codigo + " => " + item.Empleado.Nombre + " " + item.Empleado.Apellido)
+            </td>
+        </tr>
+    }
+
+</table>

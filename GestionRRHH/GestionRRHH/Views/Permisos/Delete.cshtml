@@ -1,0 +1,57 @@
+﻿@model GestionRRHH.Models.Permiso
+
+@{
+    ViewBag.Title = "Permisos";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Esta seguro que desea eliminarlo?</h3>
+<div>
+    <h4>Permiso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Desde")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hasta")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Empleado")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(item => item.Empleado.Codigo + " => " + item.Empleado.Nombre + " " + item.Empleado.Apellido)
+
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        @Html.ActionLink("<< Volver a la lista", "Index", null, new { @class = "btn btn-primary" })
+    </div>
+    }
+</div>

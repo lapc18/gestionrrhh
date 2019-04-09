@@ -6,44 +6,42 @@
 
 <h2>Consulta empleados</h2>
 
+
+<p>
+
+    @Html.ActionLink("Mostrar todo", "Inactivos", null, new { @class = "btn btn-primary" })
+
+</p>
+
 <br />
 
-@using (Html.BeginForm("ConsultaFull", "Empleados", FormMethod.Post))
+@using (Html.BeginForm("Inactivos", "Empleados", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
 
-    <div class="row">
+      <div class="row">
 
-        <div class="col-sm-2">
-            @Html.Label("Mes")
-            @Html.DropDownList("Mes", new List<SelectListItem> {
+          <div class="col-sm-3">
+              @Html.Label("Departamento")
+              @Html.DropDownList("Departamento", null, new { @class = "form-control" })
+          </div>
 
-                new SelectListItem{ Text = "Enero", Value = "1" },
-                new SelectListItem{ Text = "Febrero", Value = "2" },
-                new SelectListItem{ Text = "Marzo", Value = "3" },
-                new SelectListItem{ Text = "Abril", Value = "4" },
-                new SelectListItem{ Text = "Mayo", Value = "5" },
-                new SelectListItem{ Text = "Junio", Value = "6" },
-                new SelectListItem{ Text = "Julio", Value = "7" },
-                new SelectListItem{ Text = "Agosto", Value = "8" },
-                new SelectListItem{ Text = "Septiembre", Value = "9" },
-                new SelectListItem{ Text = "Octubre", Value = "10" },
-                new SelectListItem{ Text = "Noviembre", Value = "11" },
-                new SelectListItem{ Text = "Diciembre", Value = "12" },
+          <div class="col-sm-3">
+              @Html.Label("Empleado")
+              <div class="input-group">
+                  <input name="consulta" id="consulta" type="text" class="form-control" placeholder="Ej: Juan Perez">
+                  <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit">buscar</button>
+                  </span>
+              </div>
+          </div>
 
-            }, new { @class = "form-control" })
-        </div>
-        <div class="col-sm-2">
-
-            <br />
-            <button class="btn btn-default btn-lg" type="submit">buscar</button>
-        </div>
-    </div>
+      </div>
 
 }
 
-<br />
 
+<br/>
 
 <table class="table">
     <tr>
@@ -107,7 +105,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Departamento1.Nombre)
             </td>
-
+    
         </tr>
     }
 

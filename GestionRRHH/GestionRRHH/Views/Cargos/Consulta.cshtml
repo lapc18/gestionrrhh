@@ -1,0 +1,28 @@
+﻿@model IEnumerable<GestionRRHH.Models.Cargo>
+
+@{
+    ViewBag.Title = "Cargos";
+}
+
+<h2>Consulta</h2>
+
+<p>
+    @Html.ActionLink("<< Volver al inicio", "/Home/Index", new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cargos)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cargos)
+        </td>
+    </tr>
+}
+
+</table>

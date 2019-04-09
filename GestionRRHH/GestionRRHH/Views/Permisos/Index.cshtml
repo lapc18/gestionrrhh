@@ -1,24 +1,21 @@
-﻿@model IEnumerable<GestionRRHH.Models.Licencia>
+﻿@model IEnumerable<GestionRRHH.Models.Permiso>
 
 @{
-    ViewBag.Title = "Licencias";
+    ViewBag.Title = "Permisos";
 }
 
-<h2>Inicio</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear licencia", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Crear permiso", "Create", null, new { @class = "btn btn-primary"})
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FechaInicio)
+            @Html.DisplayName("Desde")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaFin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Motivo)
+            @Html.DisplayName("Hasta")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comentarios)
@@ -38,13 +35,10 @@
             @Html.DisplayFor(modelItem => item.FechaFin)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Motivo)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Comentarios)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdEmpleado + " => " + item.Empleado.Nombre +" "+ item.Empleado.Apellido)
+            @Html.DisplayFor(modelItem => item.Empleado.Codigo + " => " + item.Empleado.Nombre + " " + item.Empleado.Apellido)
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<GestionRRHH.Models.Nomina>
+
+@{
+    ViewBag.Title = "Nominas";
+}
+
+<div class="jumbotron">
+
+    <h3 aling="center">Nominas</h3>
+    <br />
+    <p align="center">Puede procesar la nomina con los datos actuales o con datos externos, usted elije.</p> <br />
+
+    <center>
+        @Html.ActionLink("Procesar", "Details", null, new { @class = "btn btn-success" })
+
+        @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-primary" })
+    </center>
+
+</div>
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Año")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mes)
+        </th>
+        <th>
+            @Html.DisplayName("Monto")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MontoTotal)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+
+

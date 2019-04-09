@@ -57,7 +57,7 @@
             @Html.DisplayFor(modelItem => item.Telefono)
         </td>
         <td>
-            @Html.Display("Fecha de ingreso")
+            @Html.DisplayFor(modelItem => item.FechaIngreso)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Salario)
@@ -66,7 +66,7 @@
             @Html.DisplayFor(modelItem => item.Estatus)
         </td>
         <td>
-            @Html.Display("Cargo")
+            @Html.DisplayFor(modelItem => item.Cargo.Cargos)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Departamento1.Nombre)

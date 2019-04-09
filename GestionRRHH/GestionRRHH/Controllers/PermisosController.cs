@@ -10,112 +10,141 @@ using GestionRRHH.Models;
 
 namespace GestionRRHH.Controllers
 {
-    public class CargosController : Controller
+    public class PermisosController : Controller
     {
         private GestionRRHHEntities db = new GestionRRHHEntities();
 
-        // GET: Cargos
+        // GET: Permisos
         public ActionResult Index()
         {
-            return View(db.Cargos.ToList());
+            var permisos = db.Permisos.Include(p => p.Empleado);
+            return View(permisos.ToList());
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult Consulta(string consulta)
+        {
+            var permisos = db.Permisos.Include(p => p.Empleado);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            
+            if (consulta != null || !string.IsNullOrEmpty(consulta) || !string.IsNullOrWhiteSpace(consulta))
+            {
+                return View(permisos.Where(x => x.Empleado.Nombre == consulta).ToList());
+            }
+            else
+            {
+                return View(permisos.ToList());
+            }
+
         }
 
         public ActionResult Consulta()
         {
-            return View(db.Cargos.ToList());
+            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            return View(empleados.ToList());
         }
 
-        // GET: Cargos/Details/5
+
+
+        // GET: Permisos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargo cargo = db.Cargos.Find(id);
-            if (cargo == null)
+            Permiso permiso = db.Permisos.Find(id);
+            if (permiso == null)
             {
                 return HttpNotFound();
             }
-            return View(cargo);
+            return View(permiso);
         }
 
-        // GET: Cargos/Create
+        // GET: Permisos/Create
         public ActionResult Create()
         {
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre");
             return View();
         }
 
-        // POST: Cargos/Create
+        // POST: Permisos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Cargos")] Cargo cargo)
+        public ActionResult Create([Bind(Include = "Id,CodEmpleado,FechaInicio,FechaFin,Comentarios")] Permiso permiso)
         {
             if (ModelState.IsValid)
             {
-                db.Cargos.Add(cargo);
+                db.Permisos.Add(permiso);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cargo);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", permiso.CodEmpleado);
+            return View(permiso);
         }
 
-        // GET: Cargos/Edit/5
+        // GET: Permisos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargo cargo = db.Cargos.Find(id);
-            if (cargo == null)
+            Permiso permiso = db.Permisos.Find(id);
+            if (permiso == null)
             {
                 return HttpNotFound();
             }
-            return View(cargo);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", permiso.CodEmpleado);
+            return View(permiso);
         }
 
-        // POST: Cargos/Edit/5
+        // POST: Permisos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Cargos")] Cargo cargo)
+        public ActionResult Edit([Bind(Include = "Id,CodEmpleado,FechaInicio,FechaFin,Comentarios")] Permiso permiso)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cargo).State = EntityState.Modified;
+                db.Entry(permiso).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cargo);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", permiso.CodEmpleado);
+            return View(permiso);
         }
 
-        // GET: Cargos/Delete/5
+        // GET: Permisos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargo cargo = db.Cargos.Find(id);
-            if (cargo == null)
+            Permiso permiso = db.Permisos.Find(id);
+            if (permiso == null)
             {
                 return HttpNotFound();
             }
-            return View(cargo);
+            return View(permiso);
         }
 
-        // POST: Cargos/Delete/5
+        // POST: Permisos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cargo cargo = db.Cargos.Find(id);
-            db.Cargos.Remove(cargo);
+            Permiso permiso = db.Permisos.Find(id);
+            db.Permisos.Remove(permiso);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
