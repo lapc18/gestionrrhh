@@ -20,6 +20,11 @@ namespace GestionRRHH.Controllers
             return View(db.Departamentos.ToList());
         }
 
+        public ActionResult Consulta()
+        {
+            return View(db.Departamentos.ToList());
+        }
+
         // GET: Departamentos/Details/5
         public ActionResult Details(int? id)
         {

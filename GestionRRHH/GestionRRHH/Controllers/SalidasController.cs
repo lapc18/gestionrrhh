@@ -21,6 +21,28 @@ namespace GestionRRHH.Controllers
             return View(salidas.ToList());
         }
 
+        public ActionResult Consulta()
+        {
+            var salidas = db.Salidas.Include(s => s.Empleado);
+            return View(salidas.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult Consulta(string Mes)
+        {
+            var salidas = db.Salidas.Include(s => s.Empleado);
+
+            if (string.IsNullOrEmpty(Mes))
+            {
+                return View(salidas.Where(x => x.FechaSalida.Month.ToString() == Mes).ToList());
+            }
+            else
+            {
+                return View(salidas.ToList());
+            }
+        }
+
+
         // GET: Salidas/Details/5
         public ActionResult Details(int? id)
         {

@@ -21,6 +21,54 @@ namespace GestionRRHH.Controllers
             return View(empleados.Where(x => x.Estatus == "Activo").ToList());
         }
 
+
+        [HttpPost]
+        public ActionResult Consulta(int Departamento, string consulta)
+        {
+            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            if (consulta != null || !string.IsNullOrEmpty(consulta) || !string.IsNullOrWhiteSpace(""))
+            {
+                return View(empleados.Where(x => x.Estatus == "Activo" && x.Nombre.Contains(consulta) && x.Departamento == Departamento).ToList());
+            }
+            else{
+                return View(empleados.ToList()); 
+            }
+           
+        }
+
+        public ActionResult Consulta()
+        {
+            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            return View(empleados.ToList());
+        }
+
+
+        [HttpPost]
+        public ActionResult ConsultaFull(string Mes)
+        {
+            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            
+            if (Mes != null || !string.IsNullOrEmpty(Mes) || !string.IsNullOrWhiteSpace(Mes))
+            {
+                return View(empleados.Where(x => x.FechaIngreso.Value.Month.ToString() == Mes).ToList());
+            }
+            else
+            {
+                return View(empleados.ToList());
+            }
+
+        }
+
+        public ActionResult ConsultaFull()
+        {
+            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            return View(empleados.ToList());
+        }
+
         // GET: Empleados/Details/5
         public ActionResult Details(int? id)
         {

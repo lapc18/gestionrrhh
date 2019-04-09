@@ -1,0 +1,85 @@
+﻿@model IEnumerable<GestionRRHH.Models.Salida>
+
+@{
+    ViewBag.Title = "Salidas";
+}
+
+<h2>Salidas</h2>
+
+
+<p>
+    @Html.ActionLink("Mostrar todos", "Consulta", null, new { @class = "btn btn-primary" })
+</p>
+
+
+<br />
+
+@using (Html.BeginForm("Consulta", "Salidas", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+
+        <div class="col-sm-3">
+            @Html.Label("Mes")
+            @Html.DropDownList("Mes", new List<SelectListItem> {
+
+                new SelectListItem{ Text = "Enero", Value = "1" },
+                new SelectListItem{ Text = "Febrero", Value = "2" },
+                new SelectListItem{ Text = "Marzo", Value = "3" },
+                new SelectListItem{ Text = "Abril", Value = "4" },
+                new SelectListItem{ Text = "Mayo", Value = "5" },
+                new SelectListItem{ Text = "Junio", Value = "6" },
+                new SelectListItem{ Text = "Julio", Value = "7" },
+                new SelectListItem{ Text = "Agosto", Value = "8" },
+                new SelectListItem{ Text = "Septiembre", Value = "9" },
+                new SelectListItem{ Text = "Octubre", Value = "10" },
+                new SelectListItem{ Text = "Noviembre", Value = "11" },
+                new SelectListItem{ Text = "Diciembre", Value = "12" },
+
+            }, new { @class = "form-control" })
+            <button class="btn btn-default" type="submit">buscar</button>
+        </div>
+    </div>
+
+}
+
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Tipo de Salida")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaSalida)
+        </th>
+        <th>
+            @Html.DisplayName("Empleado")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empleado.Codigo + " => " + item.Empleado.Nombre + " " + item.Empleado.Apellido)
+            </td>
+        </tr>
+    }
+
+</table>
