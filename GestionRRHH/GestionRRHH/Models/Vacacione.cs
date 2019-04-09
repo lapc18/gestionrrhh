@@ -15,6 +15,8 @@ namespace GestionRRHH.Models
     public partial class Vacacione
     {
         public int Id { get; set; }
+
+
         public Nullable<int> CodEmpleado { get; set; }
         public System.DateTime FechaInicio { get; set; }
         public System.DateTime FechaFin { get; set; }

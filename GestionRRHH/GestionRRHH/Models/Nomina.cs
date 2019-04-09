@@ -11,12 +11,19 @@ namespace GestionRRHH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Nomina
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar un año")]
         public int C_Year { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar un mes")]
         public int Mes { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar un monto")]
         public int MontoTotal { get; set; }
     }
 }

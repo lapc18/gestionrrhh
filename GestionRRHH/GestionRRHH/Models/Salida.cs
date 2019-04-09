@@ -11,13 +11,18 @@ namespace GestionRRHH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Salida
     {
         public int Id { get; set; }
         public int CodEmpleado { get; set; }
         public string TipoSalida { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar un motivo")]
         public string Motivo { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar una fecha")]
         public System.DateTime FechaSalida { get; set; }
     
         public virtual Empleado Empleado { get; set; }

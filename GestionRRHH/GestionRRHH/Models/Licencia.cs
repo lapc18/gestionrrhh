@@ -11,14 +11,27 @@ namespace GestionRRHH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Licencia
     {
+
+        [Required(ErrorMessage = "Error")]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar un empleado")]
         public int IdEmpleado { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar una fecha")]
         public System.DateTime FechaInicio { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar una fecha")]
         public System.DateTime FechaFin { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar el motivo")]
         public string Motivo { get; set; }
+
+        [Required(ErrorMessage = "Debe dejar un comentario")]
         public string Comentarios { get; set; }
     
         public virtual Empleado Empleado { get; set; }

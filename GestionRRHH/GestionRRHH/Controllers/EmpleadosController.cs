@@ -149,7 +149,7 @@ namespace GestionRRHH.Controllers
                 return HttpNotFound();
             }
             ViewBag.CodCargo = new SelectList(db.Cargos, "Id", "Cargos", empleado.CodCargo);
-            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Codigo", empleado.Departamento);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre", empleado.Departamento);
             return View(empleado);
         }
 
@@ -167,7 +167,7 @@ namespace GestionRRHH.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CodCargo = new SelectList(db.Cargos, "Id", "Cargos", empleado.CodCargo);
-            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Codigo", empleado.Departamento);
+            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre", empleado.Departamento);
             return View(empleado);
         }
 

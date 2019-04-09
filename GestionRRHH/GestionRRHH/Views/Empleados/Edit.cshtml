@@ -90,9 +90,11 @@
                 @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })
             </div>
 
+            <br />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <br />
+                    <input type="submit" value="Save" class="btn btn-success" />
                 </div>
             </div>
         </div>
@@ -101,7 +103,7 @@
 }
 
 <div>
-    @Html.ActionLink("Volver a la lista", "Index", new { @class = "btn btn-success"})
+    @Html.ActionLink("Volver a la lista", "Index",null, new { @class = "btn btn-default"})
 </div>
 
 @section Scripts {
