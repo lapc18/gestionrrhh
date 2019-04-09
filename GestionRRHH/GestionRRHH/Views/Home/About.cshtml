@@ -1,7 +1,83 @@
 ﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+    ViewData["Title"] = "Acerca de...";
+    ViewData["Nombre"] = "Luís Adolfo";
+    ViewData["Apellido"] = "Pimentel Colón";
+    ViewData["Edad"] = "20";
+    ViewData["Nacionalidad"] = "Dominicano";
+    ViewData["Profesion"] = "Tecnólogo en Desarrollo de software";
+    ViewData["Cell"] = "(829) 397 2288";
+    ViewData["Descripcion"] = "¡Hola! " +
+                "Soy Luís Adolfo Pimentel, estudiante de término del ITLA en el Tecnólogo en Desarrollo de Software," +
+                " Técnico Profesional en Informática, graduado del Instituto Politécnico Máximo Gómez, y Fundador de " +
+                "DevLegnd - Develop hard, dream big.";
 
-<p>Use this area to provide additional information.</p>
+    ViewData["PMG"] = "Técnico Profesional en Informática | PMG";//
+    ViewData["ITLA"] = "Estudiante Tecnólogo en Software | ITLA";//
+    ViewData["HMos"] = "MOS Word | Microsoft Office Specialist"; //
+    ViewData["HITCisco"] = "IT Essentials | Cisco Networking Academy"; //
+    ViewData["HITCtc"] = "IT – Academy Course | CTC"; //
+    ViewData["HDesign"] = "Design and Develop Web Pages | CTC";
+    ViewData["HAndroid"] = "Android Basics | CTC"; //
+    ViewData["HVideo"] = "Video Edition | CTC";
+
+    ViewData["HDev"] = "Learning to Develop on Windows 8 | Microsoft Virtual Academy Learning to Develop | Microsoft " +
+                "Virtual Academy";
+
+    ViewData["ITMicrosoft"] = "Microsoft Virtual Academy Technical Support | Microsoft Virtual Academy";
+
+    ViewData["Gmail1"] = "Luisadolfo9903@gmail.com";
+    ViewData["Gmail2"] = "Devlapc18@gmail.com";
+    ViewData["Outlook1"] = "Luis_adolfo0102@outlook.com";
+    ViewData["Outlook2"] = "Lapc18@outlook.com";
+}
+
+<div class="jumbotron text-center">
+    <h1>@ViewData["Nombre"] @ViewData["Apellido"]</h1>
+    <p>@ViewData["Descripcion"]</p>
+    <div class="btn-group-justified" role="group">
+        <div class="btn-group" role="group">
+            <a href="https://www.facebook.com/lapx18" class="btn btn-default">Facebook</a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="https://www.instagram.com/lapc18" class="btn btn-default">Instagram</a>
+        </div>
+        <div class="btn-group" role="group">
+            <a href="https://www.twitter.com/lapx18" class="btn btn-default">Twitter</a>
+        </div>
+    </div>
+</div>
+
+<div class="container center">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3 align="center">Datos personales</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Nombres:</strong> @ViewData["Nombre"]</li>
+                <li class="list-group-item"><strong>Apellidos:</strong> @ViewData["Apellido"]</li>
+                <li class="list-group-item"><strong>Edad:</strong> @ViewData["Edad"]</li>
+                <li class="list-group-item"><strong>Nacionalidad:</strong> @ViewData["Nacionalidad"]</li>
+                <li class="list-group-item"><strong>Profesión:</strong> @ViewData["Profesion"]</li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h3 align="center">Habilidades</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@ViewData["PMG"]</li>
+                <li class="list-group-item">@ViewData["ITLA"]</li>
+                <li class="list-group-item">@ViewData["HMos"]</li>
+                <li class="list-group-item">@ViewData["HITCisco"]</li>
+                <li class="list-group-item">@ViewData["HAndroid"]</li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h3 align="center">Contactos</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Celular: </strong> @ViewData["Cell"]</li>
+                <li class="list-group-item"><strong>Gmail personal: </strong><a href="mailto:@ViewData["Gmail1"]">@ViewData["Gmail1"]</a></li>
+                <li class="list-group-item"><strong>Gmail empresarial: </strong><a href="mailto:@ViewData["Gmail2"]">@ViewData["Gmail2"]</a></li>
+                <li class="list-group-item"><strong>Outlook personal: </strong><a href="mailto:@ViewData["Outlook1"]">@ViewData["Outlook1"]</a></li>
+                <li class="list-group-item"><strong>Outlook empresarial: </strong><a href="mailto:@ViewData["Outlook2"]">@ViewData["Outlook2"]</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
