@@ -39,7 +39,7 @@ namespace GestionRRHH.Controllers
         // GET: Salidas/Create
         public ActionResult Create()
         {
-            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo");
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre");
             return View();
         }
 
@@ -53,11 +53,15 @@ namespace GestionRRHH.Controllers
             if (ModelState.IsValid)
             {
                 db.Salidas.Add(salida);
+          
+                //aqui inactivo el empleado
+                db.Empleados.Find(salida.CodEmpleado).Estatus = "Inactivo";
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo", salida.CodEmpleado);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", salida.Empleado.Nombre);
             return View(salida);
         }
 
@@ -73,7 +77,7 @@ namespace GestionRRHH.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo", salida.CodEmpleado);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", salida.Empleado.Nombre);
             return View(salida);
         }
 
@@ -90,7 +94,7 @@ namespace GestionRRHH.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo", salida.CodEmpleado);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", salida.Empleado.Nombre);
             return View(salida);
         }
 

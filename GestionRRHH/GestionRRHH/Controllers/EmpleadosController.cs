@@ -18,7 +18,7 @@ namespace GestionRRHH.Controllers
         public ActionResult Index()
         {
             var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
-            return View(empleados.ToList());
+            return View(empleados.Where(x => x.Estatus == "Activo").ToList());
         }
 
         // GET: Empleados/Details/5

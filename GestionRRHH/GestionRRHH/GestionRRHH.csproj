@@ -134,6 +134,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicenciasController.cs" />
     <Compile Include="Controllers\SalidasController.cs" />
+    <Compile Include="Controllers\VacacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,6 +263,11 @@
     <Content Include="Views\Salidas\Details.cshtml" />
     <Content Include="Views\Salidas\Edit.cshtml" />
     <Content Include="Views\Salidas\Index.cshtml" />
+    <Content Include="Views\Vacaciones\Create.cshtml" />
+    <Content Include="Views\Vacaciones\Delete.cshtml" />
+    <Content Include="Views\Vacaciones\Details.cshtml" />
+    <Content Include="Views\Vacaciones\Edit.cshtml" />
+    <Content Include="Views\Vacaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

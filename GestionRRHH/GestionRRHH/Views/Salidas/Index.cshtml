@@ -6,16 +6,16 @@
 
 <h2>Salidas</h2>
 
-@{/*
+
 <p>
-     @Html.ActionLink("Create New", "Create")
+     @Html.ActionLink("Generar salida", "Create", null, new { @class = "btn btn-primary" })
 </p>
-*/}
+
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TipoSalida)
+            @Html.DisplayName("Tipo de Salida")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Motivo)
@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.FechaSalida)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Empleado.Codigo)
+            @Html.DisplayName("Empleado")
         </th>
         <th></th>
     </tr>
@@ -42,11 +42,11 @@
             @Html.DisplayFor(modelItem => item.FechaSalida)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Empleado.Codigo)
+            @Html.DisplayFor(modelItem => item.Empleado.Codigo + " => " + item.Empleado.Nombre + " " + item.Empleado.Apellido)
         </td>
         <td>
             @{/*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*/}
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-warnign"}) 
             @{/*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*/} 
         </td>
     </tr>

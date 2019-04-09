@@ -10,112 +10,112 @@ using GestionRRHH.Models;
 
 namespace GestionRRHH.Controllers
 {
-    public class LicenciasController : Controller
+    public class VacacionesController : Controller
     {
         private GestionRRHHEntities db = new GestionRRHHEntities();
 
-        // GET: Licencias
+        // GET: Vacaciones
         public ActionResult Index()
         {
-            var licencias = db.Licencias.Include(l => l.Empleado);
-            return View(licencias.ToList());
+            var vacaciones = db.Vacaciones.Include(v => v.Empleado);
+            return View(vacaciones.ToList());
         }
 
-        // GET: Licencias/Details/5
+        // GET: Vacaciones/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Licencia licencia = db.Licencias.Find(id);
-            if (licencia == null)
+            Vacacione vacacione = db.Vacaciones.Find(id);
+            if (vacacione == null)
             {
                 return HttpNotFound();
             }
-            return View(licencia);
+            return View(vacacione);
         }
 
-        // GET: Licencias/Create
+        // GET: Vacaciones/Create
         public ActionResult Create()
         {
-            ViewBag.IdEmpleado = new SelectList(db.Empleados, "Id", "Nombre");
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre");
             return View();
         }
 
-        // POST: Licencias/Create
+        // POST: Vacaciones/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IdEmpleado,FechaInicio,FechaFin,Motivo,Comentarios")] Licencia licencia)
+        public ActionResult Create([Bind(Include = "Id,CodEmpleado,FechaInicio,FechaFin,Correspondiente,Comentario")] Vacacione vacacione)
         {
             if (ModelState.IsValid)
             {
-                db.Licencias.Add(licencia);
+                db.Vacaciones.Add(vacacione);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdEmpleado = new SelectList(db.Empleados, "Id", "Nombre", licencia.IdEmpleado);
-            return View(licencia);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre");
+            return View(vacacione);
         }
 
-        // GET: Licencias/Edit/5
+        // GET: Vacaciones/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Licencia licencia = db.Licencias.Find(id);
-            if (licencia == null)
+            Vacacione vacacione = db.Vacaciones.Find(id);
+            if (vacacione == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEmpleado = new SelectList(db.Empleados, "Id", "Codigo", licencia.IdEmpleado);
-            return View(licencia);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", vacacione.CodEmpleado);
+            return View(vacacione);
         }
 
-        // POST: Licencias/Edit/5
+        // POST: Vacaciones/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IdEmpleado,FechaInicio,FechaFin,Motivo,Comentarios")] Licencia licencia)
+        public ActionResult Edit([Bind(Include = "Id,CodEmpleado,FechaInicio,FechaFin,Correspondiente,Comentario")] Vacacione vacacione)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(licencia).State = EntityState.Modified;
+                db.Entry(vacacione).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEmpleado = new SelectList(db.Empleados, "Id", "Codigo", licencia.IdEmpleado);
-            return View(licencia);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Nombre", vacacione.CodEmpleado);
+            return View(vacacione);
         }
 
-        // GET: Licencias/Delete/5
+        // GET: Vacaciones/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Licencia licencia = db.Licencias.Find(id);
-            if (licencia == null)
+            Vacacione vacacione = db.Vacaciones.Find(id);
+            if (vacacione == null)
             {
                 return HttpNotFound();
             }
-            return View(licencia);
+            return View(vacacione);
         }
 
-        // POST: Licencias/Delete/5
+        // POST: Vacaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Licencia licencia = db.Licencias.Find(id);
-            db.Licencias.Remove(licencia);
+            Vacacione vacacione = db.Vacaciones.Find(id);
+            db.Vacaciones.Remove(vacacione);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
