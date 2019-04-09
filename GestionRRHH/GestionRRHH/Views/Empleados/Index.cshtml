@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<GestionRRHH.Models.Empleado>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Empleados";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo empleado", "Create")
 </p>
 <table class="table">
     <tr>
@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Telefono)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaIngreso)
+            @Html.DisplayName("Fecha de ingreso")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Salario)
@@ -41,7 +41,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Codigo)
@@ -68,12 +69,15 @@
             @Html.DisplayFor(modelItem => item.Cargo.Cargos)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Departamento1.Codigo)
+            @Html.DisplayFor(modelItem => item.Departamento1.Nombre)
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) 
+            
+            @{  
+                /* @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }) */
+            }
         </td>
     </tr>
 }

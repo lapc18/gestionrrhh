@@ -10,119 +10,112 @@ using GestionRRHH.Models;
 
 namespace GestionRRHH.Controllers
 {
-    public class EmpleadosController : Controller
+    public class SalidasController : Controller
     {
         private GestionRRHHEntities db = new GestionRRHHEntities();
 
-        // GET: Empleados
+        // GET: Salidas
         public ActionResult Index()
         {
-            var empleados = db.Empleados.Include(e => e.Cargo).Include(e => e.Departamento1);
-            return View(empleados.ToList());
+            var salidas = db.Salidas.Include(s => s.Empleado);
+            return View(salidas.ToList());
         }
 
-        // GET: Empleados/Details/5
+        // GET: Salidas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            Salida salida = db.Salidas.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(salida);
         }
 
-        // GET: Empleados/Create
+        // GET: Salidas/Create
         public ActionResult Create()
         {
-            ViewBag.CodCargo = new SelectList(db.Cargos, "Id", "Cargos");
-            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Nombre");
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo");
             return View();
         }
 
-        // POST: Empleados/Create
+        // POST: Salidas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Codigo,Nombre,Apellido,Telefono,Departamento,CodCargo,FechaIngreso,Salario,Estatus")] Empleado empleado)
+        public ActionResult Create([Bind(Include = "Id,CodEmpleado,TipoSalida,Motivo,FechaSalida")] Salida salida)
         {
             if (ModelState.IsValid)
             {
-                db.Empleados.Add(empleado);
+                db.Salidas.Add(salida);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CodCargo = new SelectList(db.Cargos, "Id", "Cargos", empleado.CodCargo);
-            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Codigo", empleado.Departamento);
-            return View(empleado);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo", salida.CodEmpleado);
+            return View(salida);
         }
 
-        // GET: Empleados/Edit/5
+        // GET: Salidas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            Salida salida = db.Salidas.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CodCargo = new SelectList(db.Cargos, "Id", "Cargos", empleado.CodCargo);
-            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Codigo", empleado.Departamento);
-            return View(empleado);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo", salida.CodEmpleado);
+            return View(salida);
         }
 
-        // POST: Empleados/Edit/5
+        // POST: Salidas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Codigo,Nombre,Apellido,Telefono,Departamento,CodCargo,FechaIngreso,Salario,Estatus")] Empleado empleado)
+        public ActionResult Edit([Bind(Include = "Id,CodEmpleado,TipoSalida,Motivo,FechaSalida")] Salida salida)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(empleado).State = EntityState.Modified;
+                db.Entry(salida).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CodCargo = new SelectList(db.Cargos, "Id", "Cargos", empleado.CodCargo);
-            ViewBag.Departamento = new SelectList(db.Departamentos, "Id", "Codigo", empleado.Departamento);
-            return View(empleado);
+            ViewBag.CodEmpleado = new SelectList(db.Empleados, "Id", "Codigo", salida.CodEmpleado);
+            return View(salida);
         }
 
-        // GET: Empleados/Delete/5
+        // GET: Salidas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Empleado empleado = db.Empleados.Find(id);
-            if (empleado == null)
+            Salida salida = db.Salidas.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(salida);
         }
 
-        // POST: Empleados/Delete/5
+        // POST: Salidas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Empleado empleado = db.Empleados.Find(id);
-            empleado.Estatus = "Inactivo";
-
-           
-            //db.Empleados.Remove(empleado);
+            Salida salida = db.Salidas.Find(id);
+            db.Salidas.Remove(salida);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
